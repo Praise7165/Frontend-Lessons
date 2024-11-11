@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Asynchronous Javascript</title>
+
+        <style>
+            textarea {
+                height: 240px;
+                width: 50%;
+            }
+            #textarea {
+                margin: 1rem 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <label for="quota">Number of primes:</label>
+        <input type="text" id="quota" name="quota" value="1000000" />
+        
+        <button id="generate">Generate primes</button>
+        <button id="reload">Reload</button>
+
+        <div id="textarea"><textarea>Try typing in here immediately after pressing "Generate primes</textarea></div>
+        
+        <div id="output"></div>
+
+
+
+        <button id="xhr">Click to start request</button>
+        <button class="reload">Reload</button>
+        
+        <pre readonly class="event-log"></pre>
+        
+
+        <script src="script.js"></script>
+    </body>
+</html>
