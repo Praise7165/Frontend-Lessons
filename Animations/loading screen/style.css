@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header {
+  position: relative;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 80px;
+}
+
+header h4 {
+  position: absolute;
+  left: 10%;
+  bottom: 1rem;
+  font-size: 1.6rem;
+}
+
+/* splash screen */
+
+.intro {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #161616;
+  transition: 1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-header {
+  position: absolute;
+  color: #fff;
+  /* to center our the logo header */
+  /* 
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  */
+}
+
+.logo {
+  position: relative;
+  display: inline-block;
+  bottom: -20px;
+  opacity: 0;
+}
+
+.logo:last-child {
+  left: -10px;
+}
+
+.logo.active {
+  bottom: 0;
+  opacity: 1;
+  transition: ease-in-out 0.5s;
+}
+
+.logo.fade {
+  bottom: 64px;
+  opacity: 0;
+}
