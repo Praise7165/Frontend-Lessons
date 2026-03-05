@@ -1,4 +1,3 @@
-const obj = { width: 10, height: 15 };
-const area = obj.width * obj.height;
+const x: number = 23;
 
-console.log(area);
+console.log(x);
