@@ -70,3 +70,62 @@ console.log("A newline character is like like \'\\n\'.");
 // so if we have a number for every character, a string can be described by a sequence of numbers. That's what js does.
 
 // UNARY OPERATORS
+// not all unary operators are symbols, some are words.
+// example is the 'typeof' operator
+
+console.log(typeof 4.5);
+console.log(typeof "Birthday");
+
+// some operators takes 2 values. they are called binary operators. But the operator 'typeof' takes only 1 value, so it is a unary operator.
+
+// the '-' can be used both as a binary and unary operator
+
+console.log(-10 - 2);
+
+// 3. BOOLEAN VALUES
+// mainly used to compare. majorly true or false.
+
+// the NaN is the only value in js that is not equal to itself.
+
+console.log(NaN === NaN); // false
+// NaN is the result of a nonsensical operation, so it is not supposed to be equal to the result of another nonsensical operation.
+
+// LOGICAL OPERATORS
+// used to reason anout boolean values. They are and &&, or || and not ! (unary)
+
+// OPERATORS PRECEDENCE SO FAR
+// || < && < comparison operators (>, ==, <= etc) < the rest
+
+console.log(1 + 1 == 2 && 10 * 10 > 50);
+
+// Ternary or conditional operator
+// statement ? true : false.
+
+// 4. EMPTY VALUES
+// null and undefined are used to represent the absence of a meaningful value. They are values that carry no information.
+
+// many operations that don't produce a meaningful value returns undefined.
+// null and undefined are interchangeable.
+
+let a;
+
+console.log(a); // undefined
+
+console.log(null == undefined); // true;
+
+// we can null to test if a value is real.
+
+console.log(null == 0); // false
+
+// SHORT CIRCUITING OF LOGICAL OPERATORS
+// the || operator will return the value to its left when that value can convert to true and will return the value to it right otherwise.
+
+console.log(null || "user"); // 'user'
+console.log("Agnes" || "user"); // 'Agnes'
+
+// the ?? operator returns the value to the right only if the value on the left returns null or undefined
+
+console.log(0 ?? 100); // 0
+console.log(null ?? 100); // 100
+
+// the && operator will return the value to its left when that value convert to false and will return the value to it right otherwise.
