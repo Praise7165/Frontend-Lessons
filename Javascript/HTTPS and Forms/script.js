@@ -149,9 +149,11 @@ the first argument to fetch is the URL. when that URL doesnt start with a protoc
 when it doesnt start with a slash(/), the part of the current path up to and including its last slash character is put in front of the relative URL.
 */
 
+/*
 fetch("example/data.txt")
   .then((resp) => resp.text())
   .then((text) => console.log(text));
+*/
 
 /*
 to get the actual content of a response, you can use its text method. Because the initial promise is resolved as soon as the response's header have been received.
@@ -166,16 +168,20 @@ fetch("example/data.txt")
 
 // by default, fetch uses the GET method to make its request and does not include a request body. But we can configure it by passing a 2nd option to fetch
 
+/*
 fetch("example/data.txt", { method: "DELETE" }).then((resp) => {
   console.log(resp.status);
   // returns a 405 status code which means method not allowed.
 });
+*/
 
 // to add a request body for a PUT or post request, we can add another option.
 
+/*
 fetch("example/data.txt", { headers: { Range: "bytes=8-19" } })
   .then((resp) => resp.text())
   .then((data) => console.log(data));
+*/
 
 // to set headers, there's the headers option.
 // For example, this request includes a Range header, which
@@ -225,3 +231,6 @@ A resource is fetched by making a GET request to the resource's URL, for example
 
 the second approach makes it easier to use some of the features that HTTP provides, such as support for caching resources (Keeping a copy of a resources on the client side for fast access). The concept used in HTTP, which are well deisgned can provide a helpful set of principles to design our server interace around.
 */
+
+let input = document.querySelector("input");
+console.log(input.attributes);
