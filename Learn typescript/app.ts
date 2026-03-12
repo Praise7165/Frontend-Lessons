@@ -101,4 +101,30 @@ enum Direction {
 
 const value = Direction.Left;
 
-// ANY TYPES, UNKNOWN TYPES & TYPE ASSERTIONS
+// ANY TYPES, UNKNOWN TYPES, TYPE ASSERTIONS & TYPE CASTING
+
+// using 'any' let us ignore type checking for a variable
+let z: any = 1;
+
+// we can use 'any' when we are not able to predict what the type of the variable is going to be.
+
+// Even with that, we always want to avoid using 'any' unless we really really have to.
+
+// the 'unknown' type is more safer to use than 'any'. We can use it when we don't know / not sure what the type is going to be. Unlike 'any', 'unknown' forces us to check what the type is before performing an operation.
+
+let i: unknown = 4;
+
+if (typeof i === "number") {
+  const result = i + 1;
+} else if (typeof i == "string") {
+  const result = i.length;
+}
+
+// unknown forces us to assert what the type is before we can perform any operation.
+
+// we can also perform a typecast with unknown type, cast is like taking a variable and manually telling the compiler to treat it as a value type.
+
+let newResult = (i as number) + 1;
+newResult;
+
+// even with that, it is best to stick with the conditionals when dealing with the unknown type.
