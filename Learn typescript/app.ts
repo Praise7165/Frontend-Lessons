@@ -181,4 +181,27 @@ const nestArrObj = [[{ name: "tim" }]];
 
 const ele = nestArrObj.pop()!.pop()!.name;
 
-// it may be problematic as it ignores that our chaining may really be undefined, and it forces it to return something. And as we all know the result of something from undefined may cause our code to carsh or throw an error
+// it may be problematic as it ignores that our chaining may really be undefined, and it forces tomove forward so as to return something. And as we all know the result of something from undefined may cause our code to carsh or throw an error
+
+// it is bad practise to use the bang(!) operator and the optional chaining operator is sufficient for our needs.
+
+// FUNCTIONS TYPES
+
+function add(x: number, y: number) {
+  return x + y;
+}
+
+const addResult = add(1, 2);
+
+// putting a ?(optional operator in front of our parameter will give us the option to exclude it - as it can left undefined)
+
+// as like js, we can pass a default parameter to our function by equalling it to want we want the default value to be.
+function makeName(
+  firstName: string = "Omolade",
+  lastName: string,
+  middleName?: string,
+) {
+  return `${firstName + " "}` + `${middleName + " "}` + lastName;
+}
+
+const fullName = makeName("Omolade", "Lekan");
