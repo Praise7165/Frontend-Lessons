@@ -8,7 +8,7 @@ let result: number | undefined = undefined; // this is called a union
 
 result = 3;
 
-// type void - used when we are returning nonthing from a function.
+// type void - used when we are returning nothing from a function.
 // type never - used when a functions never returns
 
 // ARRAYS AND TUPLES
@@ -128,3 +128,57 @@ let newResult = (i as number) + 1;
 newResult;
 
 // even with that, it is best to stick with the conditionals when dealing with the unknown type.
+
+// INSTANCES TO USE 'UNKNOWN' OR 'ANY'
+
+// WHEN WE USE ANY
+/*
+function processFeedback(input: any): void {
+  // assume we can perform any operation without explicit type checks
+  console.log(`Processing: ${input}`);
+
+  // further processing logic...
+}
+
+processFeedback("Great service!");
+processFeedback(5);
+processFeedback(new Blob());
+*/
+
+// WHEN WE USE UNKNOWN
+function processFeedback(input: unknown): void {
+  // handle string specific logic
+  if (typeof input === "string") {
+    console.log(`Processing text: ${input}`);
+  } else if (typeof input === "number") {
+    // handle number specific logic
+    console.log(`Processing rating: ${input}`);
+  } else if (input instanceof Blob) {
+    // handles blob speciifc logic
+    console.log(`Processing file`);
+  } else {
+    console.log(`Unsupported type of input`);
+  }
+}
+
+processFeedback("Great Service");
+processFeedback(5);
+processFeedback(new Blob());
+processFeedback([1, 2, 3]);
+
+// OPTIONAL CHAINING AND BANGS
+// optional chaining operator (?) is useful to use when we have a chaining that can potentially return undefined.
+
+const arrObj = [{ name: "tim" }, { name: "joe" }, { name: "jane" }];
+
+const el = arrObj.pop()?.name;
+
+const nestArrObj = [[{ name: "tim" }]];
+
+// const ele = nestArrObj.pop()?.pop()?.name;
+
+// the opposite of the optional chaining(?) is the bang(!) operator. It forces a chain to be not undefined. this ! (bang) operator ignores the fact that one of our chaining may return undefined.
+
+const ele = nestArrObj.pop()!.pop()!.name;
+
+// it may be problematic as it ignores that our chaining may really be undefined, and it forces it to return something. And as we all know the result of something from undefined may cause our code to carsh or throw an error
