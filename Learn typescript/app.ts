@@ -205,3 +205,66 @@ function makeName(
 }
 
 const fullName = makeName("Omolade", "Lekan");
+
+function callFunc(
+  func: (f: string, l: string, m?: string) => string,
+  param1: string,
+  param2: string,
+) {
+  func(param1, param2);
+}
+
+console.log(callFunc(makeName, "Tim", "Ruscica"));
+
+function mul(x: number, y: number) {
+  return x * y;
+}
+
+function div(x: number, y: number) {
+  return x / y;
+}
+
+function applyFunc(
+  funcs: ((a: number, b: number) => number)[],
+  values: [number, number][],
+): number[] {
+  const results: number[] = [];
+  for (let i = 0; i < funcs.length; i++) {
+    const args = values[i];
+    const result = funcs[i](args[0], args[1]);
+    results.push(result);
+  }
+
+  return results;
+}
+
+applyFunc(
+  [mul, div],
+  [
+    [1, 2],
+    [4, 5],
+  ],
+);
+
+// ADVANCED FUNCTION TYPE: REST PARAMETERS AND OVERLOADED FUNCTIONS
+
+// REST PARAMETERS
+function sum(...numbers: number[]) {
+  let result = 0;
+  for (let i = 0; i < [...numbers].length; i++) {
+    result = result + i;
+  }
+
+  return result;
+}
+
+sum(1, 2, 3);
+sum();
+
+// OVERLOADED FUNCTION
+// when we want a function to accept different type
+// an overloaded function is a function that accepts a type of value
+
+function getItemLength(param: string | string[]) {
+  return param.length;
+}
