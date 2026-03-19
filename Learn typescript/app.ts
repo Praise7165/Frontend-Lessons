@@ -262,9 +262,79 @@ sum(1, 2, 3);
 sum();
 
 // OVERLOADED FUNCTION
-// when we want a function to accept different type
-// an overloaded function is a function that accepts a type of value
+// a function that has multiple ways it can be called and it accepts different types.
 
-function getItemLength(param: string | string[]) {
-  return param.length;
+function getItemLength(name: string): number;
+function getItemLength(names: string[]): string;
+function getItemLength(nameOrNames: unknown): unknown {
+  if (typeof nameOrNames === "string") {
+    return nameOrNames.length;
+  } else if (Array.isArray(nameOrNames)) {
+    return "Hello World";
+  }
+  return 0;
 }
+
+getItemLength("Hello");
+getItemLength(["Hello", "7", "Marve"]);
+
+// INTERFACES
+// Interfaces is a programming structure that allow us to create types on object
+
+interface Person {
+  name: string;
+  age: number;
+  height?: number; // optional
+  hello: () => void;
+}
+
+// we can also use type to describe the shape of an object
+
+/*
+type Person = {
+  name: string;
+  age: string;
+};
+*/
+
+// But type is more flexible, it can be used to define other value types
+
+type ID = string | number;
+const ID = "marvelous";
+
+// while interface is specifically for describing the shape of an object
+
+const person: Person = {
+  name: "Omolade Lekan",
+  age: 25,
+  hello: function () {
+    console.log(this.name + "says hello");
+  },
+};
+
+// Both works for describing the shape of an object, but a common convention is using interface
+
+person.hello();
+
+// if we want to create an interface that extends from one original interface - that is can still get property and methods of the parent interface
+
+interface Employee extends Person {
+  employeeId: number;
+  startTime?: string;
+  EndTime: string;
+}
+
+const worker: Employee = {
+  name: "Peter Moshhod",
+  age: 27,
+  employeeId: 2760,
+  EndTime: "7pm",
+};
+
+interface Manager extends Employee {
+  employees: Person[];
+}
+
+const manager: Manager = {
+  employees: [worker],
+};
