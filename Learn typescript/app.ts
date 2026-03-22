@@ -281,10 +281,11 @@ getItemLength(["Hello", "7", "Marve"]);
 // INTERFACES
 // Interfaces is a programming structure that allow us to create types on object
 
+/*
 interface Person {
   name: string;
   age: number;
-  height?: number; // optional
+  height?: number; // optional chaining
   hello: () => void;
 }
 
@@ -320,7 +321,7 @@ person.hello();
 
 interface Employee extends Person {
   employeeId: number;
-  startTime?: string;
+  startTime: string;
   EndTime: string;
 }
 
@@ -328,13 +329,92 @@ const worker: Employee = {
   name: "Peter Moshhod",
   age: 27,
   employeeId: 2760,
+  startTime: "7am",
   EndTime: "7pm",
+  hello: function () {
+    console.log(this.name + " says hello");
+  },
 };
 
+// we can extend to multiple interface by using comma.
 interface Manager extends Employee {
   employees: Person[];
 }
 
+/*
 const manager: Manager = {
   employees: [worker],
 };
+
+
+function getPerson(p: Person): Person {
+  return {
+    name: "Omolade Lekan",
+    age: 23,
+    hello() {
+      console.log("God is the greatest");
+    },
+  };
+}
+
+// we use interface when we deal with objects that have different properties
+
+// OBJECT ORIENTED PROGRAMMING IN TYPESCRIPT
+// CLASSES AND ABSTRACT CLASSES
+
+class Person {
+  private name: string;
+  constructor(name: string) {
+    this.name = name;
+  }
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+
+  getName() {
+    if (this.name.length < 2) return "";
+    return this.name;
+  }
+
+  setName(name: string) {
+    if (name.length < 5) return;
+    this.name = name;
+  }
+}
+
+// when we make a property or method private, we can only use it within the class.
+
+const p1 = new Person("Olomola");
+
+// for example, in this case, we can not access the name property of class Person outside of it scope
+// p1.name;
+
+// but when we remove private, it becomes public by default without explicitly writing 'public'
+
+// the reason we use private is to prevent things, methods, functions - things outside the class from modifying properties / method in our class.
+
+// if we need to access or modify a private property/method, we can use a setter and getter function inside of our class
+
+p1.getName();
+p1.setName("Lekan");
+*/
+
+// PUBLIC PROPERTY/METHOD
+// But the opposite is the case when it is public. we dont even have to explicitly indicate that the method/property of a class is public. It is public by default if private is ot written at it front.
+
+class Person {
+  public name: string; // we dont have to explicitly write public
+  constructor(name: string) {
+    this.name = name;
+  }
+  greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+const pman = new Person("Kosija");
+
+// for public properties, we can access and modify them outside of their defined class
+pman.name = "Omolade Richard";
+
+// PROTECTED
