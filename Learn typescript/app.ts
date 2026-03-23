@@ -1,3 +1,4 @@
+/*
 // PRIMITIVE TYPE
 let x: number = 2; // number
 let j: string = "hello world"; //string
@@ -132,7 +133,6 @@ newResult;
 // INSTANCES TO USE 'UNKNOWN' OR 'ANY'
 
 // WHEN WE USE ANY
-/*
 function processFeedback(input: any): void {
   // assume we can perform any operation without explicit type checks
   console.log(`Processing: ${input}`);
@@ -143,7 +143,7 @@ function processFeedback(input: any): void {
 processFeedback("Great service!");
 processFeedback(5);
 processFeedback(new Blob());
-*/
+
 
 // WHEN WE USE UNKNOWN
 function processFeedback(input: unknown): void {
@@ -291,12 +291,11 @@ interface Person {
 
 // we can also use type to describe the shape of an object
 
-/*
+
 type Person = {
   name: string;
   age: string;
 };
-*/
 
 // But type is more flexible, it can be used to define other value types
 
@@ -341,7 +340,7 @@ interface Manager extends Employee {
   employees: Person[];
 }
 
-/*
+
 const manager: Manager = {
   employees: [worker],
 };
@@ -359,8 +358,10 @@ function getPerson(p: Person): Person {
 
 // we use interface when we deal with objects that have different properties
 
+
 // OBJECT ORIENTED PROGRAMMING IN TYPESCRIPT
 // CLASSES AND ABSTRACT CLASSES
+// ACCESS MODIFIERS - PUBLIC, PRIVATE & PROTECTED
 
 class Person {
   private name: string;
@@ -397,7 +398,7 @@ const p1 = new Person("Olomola");
 
 p1.getName();
 p1.setName("Lekan");
-*/
+
 
 // PUBLIC PROPERTY/METHOD
 // But the opposite is the case when it is public. we dont even have to explicitly indicate that the method/property of a class is public. It is public by default if private is ot written at it front.
@@ -417,4 +418,80 @@ const pman = new Person("Kosija");
 // for public properties, we can access and modify them outside of their defined class
 pman.name = "Omolade Richard";
 
+
 // PROTECTED
+// for protected, the class itself and any class that extends it can access it, but outside code cannot
+class Person {
+  protected name: string;
+  constructor(name: string) {
+    this.name = name;
+    this.greet();
+  }
+  private greet() {
+    console.log(`Hello, my name is ${this.name}`);
+  }
+}
+
+class Employee extends Person {
+  constructor(name: string) {
+    super(name);
+    console.log(this.name);
+  }
+}
+
+const p = new Person("Lekan");
+// console.log(p.name); // will return error since we cannot access protected property from outside
+
+// ABSTRACT CLASS
+// abstract class is a restricted class that cannot be used to create objects. They are designed to be specifically used as a base class which will be inherited by sub classes
+
+// we can not create an instance of an abstract class. We can use it, extend it, we can over-write it
+
+abstract class Animal {
+  // abstract property must be implemented by a subclass that over extends from the class animal
+  abstract MakeSound(duration: number): void;
+
+  move(duration: number) {
+    console.log("Moving along...");
+    this.MakeSound(duration);
+  }
+}
+
+// const animal = new Animal(); // will return error
+
+class Dog extends Animal {
+  MakeSound(duration: number): void {
+    console.log("The dog barked for " + duration + " minutes");
+  }
+}
+
+class Cat extends Animal {
+  MakeSound(duration: number): void {
+    console.log("The cat meowed for " + duration + " minutes");
+  }
+}
+
+const dog = new Dog();
+dog.move(10);
+*/
+
+// CLASSES AND INTERFACES
+// an interface is abstract; that is it doesn't describe anu functionality or behaivour
+/* 
+interface Animal {
+  speak(): void;
+}
+*/
+// apart from objects, we can also use interface for classes
+
+class Dog {
+  private name: string;
+  private color: string;
+
+  constructor(name: string, color: string) {
+    this.name = name;
+    this.color = color;
+  }
+}
+
+console.log(new Dog("Cat", "Orange"));
