@@ -476,13 +476,6 @@ const dog = new Dog();
 dog.move(10);
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-// CLASSES AND INTERFACES
-// an interface is abstract; that is it doesn't describe anu functionality or behaivour
-/*
-interface Animal {
-  speak(): void;
-}
-*/
 // apart from objects, we can also use interface for classes
 class Dog {
     name;
@@ -491,6 +484,15 @@ class Dog {
         this.name = name;
         this.color = color;
     }
+    // must be public since it is public from the interface it extends from
+    speak() {
+        console.log(`I am ${this.name} and I am ${this.color}`);
+    }
+    test() {
+        return 1;
+    }
 }
-console.log(new Dog("Cat", "Orange"));
+// when we implements, we define the methods or prop that exist on the interface
+const dog = new Dog("Cat", "Orange");
+console.log(dog.speak());
 //# sourceMappingURL=app.js.map
