@@ -474,25 +474,95 @@ class Cat extends Animal {
 
 const dog = new Dog();
 dog.move(10);
+
+
+// CLASSES AND INTERFACES
+// an interface is abstract; that is it doesn't describe any functionality or behaivour
+
+interface Animal {
+  speak(): void;
+}
+
+// apart from objects, we can also use interface for classes
+
+class Dog implements Animal {
+  private name: string;
+  private color: string;
+
+  constructor(name: string, color: string) {
+    this.name = name;
+    this.color = color;
+  }
+
+  // must be public since it is public from the interface it extends from
+  speak() {
+    console.log(`I am ${this.name} and I am ${this.color}`);
+  }
+
+  test() {
+    return 1;
+  }
+}
+
+// when we implements, we define the methods or prop that exist on the interface
+
+const dog: Animal = new Dog("Tim", "Brown");
+// when we assign a type (Animal in this case) to a new instance of class, only the method defined in the type interface is allowed to be called on the instance created.
+
+dog.speak();
+// for example on speak() method become available to dog instance.
+
+class Cat implements Animal {
+  speak() {
+    console.log("Meow meow");
+  }
+}
+
+const cat = new Cat();
+const animals: Animal[] = [cat, dog];
+
+animals[1].speak;
+
+// why do we do this?
+// this function for example doesn't care if it is a dog or a cat, but whatever it is given must have a speak method as defined in the parameter
+function makeSound(a: Animal) {
+  a.speak();
+}
+
+makeSound(cat);
+makeSound(dog);
+
+// we use an interface when there's no functionality we want to define concretely. The main purpose of an interface is to define the structure of an object.
+
+// we use an abstract class when we have a method or property that will want to resuse in other classes that extends from the abstract class. Tha main purpose of an abstract class is to serve as a base class
+
+// interface allows use to treat object as if they are of the same types.
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-// apart from objects, we can also use interface for classes
+// STATIC ATTRIBUTES & METHODS
+// the 'static' keyword let us create static attributes and methods which are variables and methods associated with the class rather than with each instance of the class
 class Dog {
+    // the count property is the same in all instance. since it is static
+    static count = 0;
+    // this is a name property that chnages with every instance
     name;
-    color;
-    constructor(name, color) {
+    constructor(name) {
+        // will increase as new instance of the class are created
+        Dog.count++;
         this.name = name;
-        this.color = color;
     }
-    // must be public since it is public from the interface it extends from
-    speak() {
-        console.log(`I am ${this.name} and I am ${this.color}`);
-    }
-    test() {
-        return 1;
+    // static methods
+    static decreaseCount() {
+        this.count--;
     }
 }
-// when we implements, we define the methods or prop that exist on the interface
-const dog = new Dog("Cat", "Orange");
-console.log(dog.speak());
+const dog1 = new Dog("Tim");
+console.log(Dog.count);
+const dog2 = new Dog("Joe");
+console.log(Dog.count); // return 2 since we have created 2 instances
+Dog.decreaseCount();
+console.log(Dog.count); // return 1 now since we already decrease it with static function DecreaseCount()
+// why will use static attributes
+// 1. to track the no of instances that exist
+// 2. when we have a variable inside of the class that all instances want to have access to.
 //# sourceMappingURL=app.js.map

@@ -536,7 +536,7 @@ makeSound(dog);
 // we use an abstract class when we have a method or property that will want to resuse in other classes that extends from the abstract class. Tha main purpose of an abstract class is to serve as a base class
 
 // interface allows use to treat object as if they are of the same types.
-*/
+
 
 // STATIC ATTRIBUTES & METHODS
 // the 'static' keyword let us create static attributes and methods which are variables and methods associated with the class rather than with each instance of the class
@@ -548,10 +548,52 @@ class Dog {
   name: string;
 
   constructor(name: string) {
+    // will increase as new instance of the class are created
     Dog.count++;
     this.name = name;
+  }
+
+  // static methods
+  static decreaseCount() {
+    this.count--;
   }
 }
 
 const dog1 = new Dog("Tim");
+console.log(Dog.count);
 const dog2 = new Dog("Joe");
+
+console.log(Dog.count); // return 2 since we have created 2 instances
+Dog.decreaseCount();
+
+console.log(Dog.count); // return 1 now since we already decrease it with static function DecreaseCount()
+
+// why will use static attributes
+// 1. to track the no of instances that exist
+// 2. when we have a variable inside of the class that all instances want to have access to.
+*/
+
+// GENERICS
+class DataStore {
+  private items: number[] = [];
+
+  addItem(item: number): void {
+    this.items.push(item);
+  }
+
+  getItem(index: number): number {
+    return this.items[index];
+  }
+
+  removeItem(index: number): void {
+    this.items.splice(index, 1);
+  }
+
+  getAllItems(): number[] {
+    return this.items;
+  }
+}
+
+const data = new DataStore();
+
+data.addItem("hello");
